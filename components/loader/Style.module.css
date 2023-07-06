@@ -1,0 +1,13 @@
+.loader{
+    background-color:rgb(165, 165, 165);
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    transition: all 0.5s;
+    z-index: 1000;
+    top: 0;
+}
+
+.isLoaded{
+    height: 0px;
+}

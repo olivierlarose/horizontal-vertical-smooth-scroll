@@ -1,0 +1,45 @@
+.container{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+}
+
+.container img{
+    width: 50%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.body{
+    width: 40%;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 12.5%;
+    padding-top: 20px;
+    border-top: 1px solid black;
+    display: flex;
+    flex-direction: column;
+}
+
+.subtitle{
+    text-transform: uppercase;
+    margin-bottom: 30px;
+    font-size: 0.75vw;
+}
+
+.lineMask{
+    overflow: hidden;
+}
+.lineMask p{
+    margin: 0px;
+    font-size: 2vw;
+}
+
+.footer{
+    margin-top: 10vw;
+}
+
+.footer .lineMask p{
+    margin: 0px;
+    font-size: 0.75vw;
+}
