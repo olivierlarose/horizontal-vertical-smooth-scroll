@@ -1,3 +1,8 @@
-.body{
+.container{
     display: flex;
+}
+
+.body{
+    display: inline-flex;
+    height: calc(100vh - 15px);
 }

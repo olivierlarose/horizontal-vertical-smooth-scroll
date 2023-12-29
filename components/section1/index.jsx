@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import styles from './Style.module.css';
 import { motion } from 'framer-motion';
 import TextMask from '../textMask';
+import Image from 'next/image';
 
 const phrases = [
     "Beauty and quality need the right time",
@@ -22,7 +23,13 @@ export default function index() {
 
     return (
         <div className={styles.container}>
-            <img src="/images/picture1.jpg"></img>
+            <div className={styles.imageContainer}>
+                <Image 
+                    src={"/images/picture1.jpg"}
+                    fill={true}
+                    alt="background"
+                />
+            </div>
             <div className={styles.body}>
                 <p className={styles.subtitle}>
                     Post Scriptum

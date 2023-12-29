@@ -5,181 +5,46 @@ import TextMask from '../textMask';
 import { useInView } from 'react-intersection-observer';
 import { motion } from 'framer-motion';
 
-const projects = [
-    {
-        projectTitle: "Mesh Dojo",
-        awardTitle: "Css Design Award",
-        year: "2023"
-    },
-    {
-        projectTitle: "Mesh Dojo",
-        awardTitle: "Css Design Award",
-        year: "2023"
-    },
-    {
-        projectTitle: "Mesh Dojo",
-        awardTitle: "Css Design Award",
-        year: "2023"
-    },
-    {
-        projectTitle: "Mesh Dojo",
-        awardTitle: "Css Design Award",
-        year: "2023"
-    }
-    ,{
-        projectTitle: "Mesh Dojo",
-        awardTitle: "Css Design Award",
-        year: "2023"
-    },
-    ,{
-        projectTitle: "Mesh Dojo",
-        awardTitle: "Css Design Award",
-        year: "2023"
-    },
-    ,{
-        projectTitle: "Mesh Dojo",
-        awardTitle: "Css Design Award",
-        year: "2023"
-    },
-    ,{
-        projectTitle: "Mesh Dojo",
-        awardTitle: "Css Design Award",
-        year: "2023"
-    },
-    ,{
-        projectTitle: "Mesh Dojo",
-        awardTitle: "Css Design Award",
-        year: "2023"
-    },
-    ,{
-        projectTitle: "Mesh Dojo",
-        awardTitle: "Css Design Award",
-        year: "2023"
-    },
-    ,{
-        projectTitle: "Mesh Dojo",
-        awardTitle: "Css Design Award",
-        year: "2023"
-    },
-    ,{
-        projectTitle: "Mesh Dojo",
-        awardTitle: "Css Design Award",
-        year: "2023"
-    },
-    ,{
-        projectTitle: "Mesh Dojo",
-        awardTitle: "Css Design Award",
-        year: "2023"
-    },
-    ,{
-        projectTitle: "Mesh Dojo",
-        awardTitle: "Css Design Award",
-        year: "2023"
-    },
-    ,{
-        projectTitle: "Mesh Dojo",
-        awardTitle: "Css Design Award",
-        year: "2023"
-    },
-    ,{
-        projectTitle: "Mesh Dojo",
-        awardTitle: "Css Design Award",
-        year: "2023"
-    },
-    ,{
-        projectTitle: "Mesh Dojo",
-        awardTitle: "Css Design Award",
-        year: "2023"
-    },
-    ,{
-        projectTitle: "Mesh Dojo",
-        awardTitle: "Css Design Award",
-        year: "2023"
-    },
-    ,{
-        projectTitle: "Mesh Dojo",
-        awardTitle: "Css Design Award",
-        year: "2023"
-    },
-    ,{
-        projectTitle: "Mesh Dojo",
-        awardTitle: "Css Design Award",
-        year: "2023"
-    },
-    ,{
-        projectTitle: "Mesh Dojo",
-        awardTitle: "Css Design Award",
-        year: "2023"
-    },
-    ,{
-        projectTitle: "Mesh Dojo",
-        awardTitle: "Css Design Award",
-        year: "2023"
-    },
-    ,{
-        projectTitle: "Mesh Dojo",
-        awardTitle: "Css Design Award",
-        year: "2023"
-    },
-    ,{
-        projectTitle: "Mesh Dojo",
-        awardTitle: "Css Design Award",
-        year: "2023"
-    },
-    ,{
-        projectTitle: "Mesh Dojo",
-        awardTitle: "Css Design Award",
-        year: "2023"
-    },
-    ,{
-        projectTitle: "Mesh Dojo",
-        awardTitle: "Css Design Award",
-        year: "2023"
-    },
-    ,{
-        projectTitle: "Mesh Dojo",
-        awardTitle: "Css Design Award",
-        year: "2023"
-    }
-    
-]
-export default function index({scroll}) {
+export default function index() {
 
     const verticalContainer = useRef();
 
     useEffect(() => {
-        if(scroll){
+        let ctx = gsap.context(() => {
             gsap.to(verticalContainer.current, {
                 scrollTrigger: {
-                  trigger: verticalContainer.current,
-                  start: "left left",
-                  end: "+=" + verticalContainer.current.scrollHeight,
-                  pin: true,
-                  pinSpacing: true,
-                  scrub: true,
-                  horizontal: true,
+                    trigger: verticalContainer.current,
+                    start: "left left",
+                    end: "+=" + (window.innerHeight * 0.75 + window.innerWidth * 0.25),
+                    pin: true,
+                    pinSpacing: true,
+                    scrub: true,
+                    horizontal: true,
                 },
                 y: -(verticalContainer.current.scrollHeight - window.innerHeight),
                 ease: "none"
-              });
-        }
-    }, [scroll])
+            });
+          });
+        return () => ctx.revert(); // <-- CLEANUP!
+    }, [])
 
     return (
-        <div ref={verticalContainer} className={styles.verticalContainer}>
-            <div className={styles.body}>
-                <div className={styles.header}>
-                    <p>Awards &</p>
-                    <p>Recognition</p>
+        <div className={styles.container}>
+            <div ref={verticalContainer} className={styles.verticalContainer}>
+                <div className={styles.body}>
+                    <div className={styles.header}>
+                        <p>Awards &</p>
+                        <p>Recognition</p>
+                    </div>
+                    {
+                        [...Array(30)].map( (_, index) => {
+                            return <Project key={index} projectTitle={"Project " + index} awardTitle={"Css Design Awards"} year={"2023"}/>
+                        })
+                    }
                 </div>
-                {
-                    projects.map( (project, index) => {
-                        const { projectTitle, awardTitle, year } = project;
-                        return <Project key={index} projectTitle={projectTitle} awardTitle={awardTitle} year={year}/>
-                    })
-                }
             </div>
         </div>
+       
     )
 }
 
