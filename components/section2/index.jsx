@@ -1,12 +1,9 @@
-import React, { useRef, useEffect, useState, useLayoutEffect } from 'react'
+import React, { useRef, useLayoutEffect } from 'react'
 import styles from './Style.module.css';
 import gsap from 'gsap/dist/gsap';
-import TextMask from '../textMask';
 import { useInView } from 'react-intersection-observer';
-import { motion } from 'framer-motion';
-import { useGSAP } from "@gsap/react";
 
-export default function index() {
+export default function Index() {
 
     const verticalContainer = useRef();
 

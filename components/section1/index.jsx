@@ -1,6 +1,5 @@
-import React, { useState } from 'react'
+import React from 'react'
 import styles from './Style.module.css';
-import { motion } from 'framer-motion';
 import TextMask from '../textMask';
 import Image from 'next/image';
 
@@ -19,7 +18,7 @@ const footerPhrases = [
     "Kindness",
     "Trust"
 ]
-export default function index() {
+export default function Index() {
 
     return (
         <div className={styles.container}>

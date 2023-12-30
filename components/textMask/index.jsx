@@ -1,6 +1,6 @@
-import React, { useEffect, useLayoutEffect, useRef } from 'react'
+import React, { useLayoutEffect, useRef } from 'react'
 import gsap from 'gsap';
-export default function index({text, styles, animate, delay}) {
+export default function Index({text, styles, animate, delay}) {
 
     const textRef = useRef(null);
 

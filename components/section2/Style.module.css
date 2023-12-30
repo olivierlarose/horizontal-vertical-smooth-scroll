@@ -55,7 +55,6 @@
 .project:hover .lineMask{
     padding-left: 20px;
     padding-right: 20px;
-    transform: translateY(100%);
 }
 .project:hover .lineMaskActive{
     transition: tranform 1s cubic-bezier(0.33, 1, 0.68, 1);
