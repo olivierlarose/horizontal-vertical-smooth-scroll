@@ -1,16 +1,21 @@
-import React from 'react'
-import { motion } from 'framer-motion';
-
+import React, { useEffect, useLayoutEffect, useRef } from 'react'
+import gsap from 'gsap';
 export default function index({text, styles, animate, delay}) {
 
-    const animation = {
-        initial: {y: "100%", opacity: 0},
-        enter: i => ({y: "0", opacity: 1, transition: {duration: 1, ease: [0.33, 1, 0.68, 1], delay: delay}})
-    }
+    const textRef = useRef(null);
+
+    useLayoutEffect( () => {
+        let ctx = gsap.context(() => {
+            gsap.from(textRef.current, {y: "100%", duration:1, ease: [0.33, 1, 0.68, 1], delay})
+        });
+        return () => ctx.revert(); // <-- CLEANUP!
+    }, [animate])
 
     return (
         <div className={styles.lineMask}>
-            <motion.p custom={index} variants={animation} initial="initial" animate={animate ? "enter" : ""}>{text}</motion.p>
+            <p ref={textRef}>
+                {text}
+            </p>
         </div>
     )
 }

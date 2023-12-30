@@ -1,15 +1,16 @@
-import React, { useRef, useEffect, useState } from 'react'
+import React, { useRef, useEffect, useState, useLayoutEffect } from 'react'
 import styles from './Style.module.css';
 import gsap from 'gsap/dist/gsap';
 import TextMask from '../textMask';
 import { useInView } from 'react-intersection-observer';
 import { motion } from 'framer-motion';
+import { useGSAP } from "@gsap/react";
 
 export default function index() {
 
     const verticalContainer = useRef();
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         let ctx = gsap.context(() => {
             gsap.to(verticalContainer.current, {
                 scrollTrigger: {
@@ -51,23 +52,35 @@ export default function index() {
 export function Project({projectTitle, awardTitle, year}){
     
     const { ref, inView } = useInView({
-        threshold: 0
-    })
+        threshold: 0,
+    });
 
-    const animation = {
-        initial: {y: "100%", opacity: 0},
-        enter: i => ({y: "0", opacity: 1, transition: {duration: 1, ease: [0.33, 1, 0.68, 1]}})
-    }
+    const line = useRef(null);
+    const div = useRef(null);
+
+    useLayoutEffect( () => {
+        let ctx = gsap.context(() => {
+            if(inView){
+                gsap.to(div.current, {y: "0", duration: 1, ease: [0.33, 1, 0.68, 1]})
+                gsap.to(line.current, {width: "100%", duration: 1.2})
+            }
+            else{
+                gsap.set(div.current, {y: "100%"})
+                gsap.set(line.current, {width: 0})
+            }
+        })
+        return () => ctx.revert();
+    }, [inView])
 
     return(
-        <div ref={ref} variants={animation} initial="initial" animate={inView ? "enter" : ""} className={styles.project}>
+        <div ref={ref} className={styles.project}>
             <div className={styles.background}></div>
-            <div className={inView ? styles.lineActive : styles.line}></div>
-            <motion.div className={styles.lineMask}>
+            <div ref={line} className={styles.line}></div>
+            <div ref={div} className={styles.lineMask}>
                 <p>{projectTitle}</p>
                 <p>{awardTitle}</p>
                 <p>{year}</p>
-            </motion.div>
+            </div>
         </div>
     )
 }

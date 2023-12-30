@@ -36,7 +36,7 @@ export default function index() {
                 </p>
                 {
                     phrases.map( (phrase, index) => {
-                        return <TextMask key={index} text={phrase} styles={styles} animate={true} delay={0.75 + 0.1 * index}/>
+                        return <TextMask key={index} text={phrase} styles={styles} animate={true} delay={0.1 * index}/>
                     })
                 }
                 
@@ -46,7 +46,7 @@ export default function index() {
                     </p>
                     {
                         footerPhrases.map( (phrase, index) => {
-                            return <TextMask key={index} text={phrase} styles={styles} animate={true} delay={0.75 + 0.1 * index}/>
+                            return <TextMask key={index} text={phrase} styles={styles} animate={true} delay={0.1 * index}/>
                         })
                     }
                 </div>
