@@ -2,6 +2,7 @@ import React from 'react'
 import styles from './Style.module.css';
 import TextMask from '../textMask';
 import Image from 'next/image';
+import Picture from '../../public/images/picture1.jpg';
 
 const phrases = [
     "Beauty and quality need the right time",
@@ -24,9 +25,10 @@ export default function Index() {
         <div className={styles.container}>
             <div className={styles.imageContainer}>
                 <Image 
-                    src={"/images/picture1.jpg"}
-                    fill={true}
+                    src={Picture}
+                    fill
                     alt="background"
+                    placeholder='blur'
                 />
             </div>
             <div className={styles.body}>
